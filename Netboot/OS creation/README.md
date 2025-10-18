@@ -28,6 +28,7 @@ After using `kpartx` on the image, the result is usually something like:
 add map loop0p1 (253:0): 0 204800 linear 7:0 2048
 add map loop0p2 (253:1): 0 1847296 linear 7:0 206848
 
+
 ---
 
 ## Step 2: Mount the Partitions
@@ -95,35 +96,3 @@ The `commandline.txt` file contains several important kernel parameters that con
 - **`rootwait`** - Instructs the kernel to wait for the root device to become available before attempting to mount it, allowing time for network initialization.
 
 - **`elevator=deadline`** - Sets the I/O scheduler to deadline mode, which can improve performance for NFS-based root filesystems by optimizing disk I/O request handling.
-Absolutely! You can copy text from ChatGPT **directly as Markdown**. Here’s how to do it cleanly:
-
----
-
-### Steps:
-
-1. **Select the Markdown block**
-
-   * Look for the triple backticks (```) or the formatted section I provide.
-   * Click and drag to select all the content inside the block.
-
-2. **Copy it**
-
-   * Use `Ctrl+C` (Windows/Linux) or `Cmd+C` (Mac) to copy.
-
-3. **Paste it into your Markdown editor or file**
-
-   * For example, into `README.md` or VS Code.
-   * It will retain headings (`#`), code blocks, bullet points, etc.
-
-4. **Optional:** Save the file
-
-   ```bash
-   nano README.md  # paste and save
-   ```
-
----
-
-💡 **Tip:**
-If you want a “ready-to-save” Markdown file, I can provide it as a **single, complete `.md` content block** you can copy and paste directly—no extra formatting needed.
-
-Do you want me to do that for all your PXE/NFS setup notes?
