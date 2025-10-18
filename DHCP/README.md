@@ -56,6 +56,7 @@ default-lease-time 600; # Default lease duration: 600 seconds (10 minutes)
 max-lease-time 7200;    # Maximum lease duration: 7200 seconds (2 hours)
 allow bootp;            # Enable BOOTP for PXE/network booting
 allow booting;          # Allow network clients to boot from this server
+````
 
 # DHCP Host Configuration Options
 
@@ -65,5 +66,3 @@ Each host on the network requires the following three options:
 - **fixed-address**: The statically assigned IP address
 - **option tftp-server-name**: Specifies the TFTP server to use for PXE boot
 
-
-````
