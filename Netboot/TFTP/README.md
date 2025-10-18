@@ -12,4 +12,5 @@ Install the TFTP server with:
 sudo apt install tftp-hpa
 ```
 
+the configurations for the tftp server are inside /etc/default/tftp
 in the server configurations, we assign a root directory, inside /mnt/netboot_common/nfs
