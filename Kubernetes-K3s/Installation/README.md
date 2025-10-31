@@ -51,34 +51,66 @@ The installation of K3s on the master node is straightforward using the official
 curl -sfL https://get.k3s.io | sh -s - server --snapshotter=fuse-overlayfs
 ```
 
-* `server` → Specifies that this node is the **K3s master (control plane)**
-* `--snapshotter=fuse-overlayfs` → Configures K3s to use **fuse-overlayfs** as the container snapshotter
+- `server` → Specifies that this node is the **K3s master (control plane)**
+- `--snapshotter=fuse-overlayfs` → Configures K3s to use **fuse-overlayfs** as the container snapshotter
 
 ---
 
 ## 5. installing K3s on Client Nodes
 
-In order to install k3s on client Nodes, we need a token that was generated on first install of the k3s server obtained by:
+Here’s your content formatted as a clean, professional **Markdown (`.md`) file**:
 
+````markdown
+# Installing K3s on Client Nodes
+
+To install **K3s** on the client (worker) nodes, a token generated during the **initial installation of the K3s master node** is required.
+
+---
+
+## 1. Retrieve the K3s Node Token
+
+The token is created automatically on the **K3s server** during installation.  
+You can obtain it using the following command:
+
+```bash
 sudo cat /var/lib/rancher/k3s/server/node-token
+```
+````
 
-Next the k3s-agent can be installed in similar fashion to the master, providing however certain environment variables:
+## 2. Configure Environment Variables
 
-Environment Variables:
-1. K3S_NODE_NAME={{ inventory_hostname }}
-Sets the node name to the Ansible inventory hostname
-2. K3S_URL={{ k3s_url }}
-Points to the K3s server API endpoint
-https://192.168.2.2:6443 - Where the K3s control plane is running
-3. K3S_TOKEN={{ k3s_token }}
-Authentication token to join the cluster
-4. INSTALL_K3S_EXEC="..."
---snapshotter=fuse-overlayfs:
---kubelet-arg=runtime-request-timeout=5m:
---kubelet-arg=node-status-update-frequency=10s:
-5. INSTALL_K3S_SKIP_SSL_VERIFY=true
-Skips SSL certificate verification
+Before running the installation script on each client node, set the following environment variables.
 
-Install using: 
+### Environment Variables
+
+| Variable                                 | Description                                                            |
+| ---------------------------------------- | ---------------------------------------------------------------------- |
+| `K3S_NODE_NAME={{ inventory_hostname }}` | Sets the node name to the Ansible inventory hostname                   |
+| `K3S_URL={{ k3s_url }}`                  | Points to the K3s server API endpoint, e.g. `https://192.168.2.2:6443` |
+| `K3S_TOKEN={{ k3s_token }}`              | Authentication token used to join the cluster                          |
+| `INSTALL_K3S_EXEC="..."`                 | Additional K3s options (see below)                                     |
+| `INSTALL_K3S_SKIP_SSL_VERIFY=true`       | Skips SSL certificate verification (useful for internal or lab setups) |
+
+---
+
+```bash
+INSTALL_K3S_EXEC="--snapshotter=fuse-overlayfs \
+--kubelet-arg=runtime-request-timeout=5m \
+--kubelet-arg=node-status-update-frequency=10s"
+```
+
+- `--snapshotter=fuse-overlayfs` → Use FUSE-based overlay filesystem
+- `--kubelet-arg=runtime-request-timeout=5m` → Extend timeout for container runtime requests
+- `--kubelet-arg=node-status-update-frequency=10s` → Set how often node status updates occur
+
+---
+
+## 3. Run the Installation Script
+
+Once all variables are set, run the installation script:
+
+```bash
 ./install-k3s.sh
+```
 
+This will install and configure **K3s agent** on the client node, joining it to the existing cluster using the provided token and server URL.
