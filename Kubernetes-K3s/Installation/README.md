@@ -114,3 +114,33 @@ Once all variables are set, run the installation script:
 ```
 
 This will install and configure **K3s agent** on the client node, joining it to the existing cluster using the provided token and server URL.
+
+
+### 4. config file:
+
+This configuration file (/etc/rancher/k3s/config.yaml) customizes the behavior and performance of a K3s Kubernetes cluster. It fine-tunes several core components to optimize stability, responsiveness, and resource efficiency
+
+
+1. **snapshotter: "fuse-overlayfs"** – Uses a compatible container snapshotter for systems lacking native overlayfs support.
+
+2. **API Server tuning** –
+
+   * Increases request timeouts and concurrency limits for better performance under heavy loads.
+   * `http2-max-streams-per-connection=2000` allows more parallel API calls.
+
+3. **Controller Manager tuning** –
+
+   * Faster node health checks (`node-monitor-period=5s`).
+   * Quicker node failure detection (`grace-period=20s`).
+   * Controlled eviction rates to avoid mass node removal during transient issues.
+
+4. **etcd tuning** –
+
+   * Enables metrics for monitoring.
+   * Periodic compaction every 5 minutes keeps the database efficient.
+   * 8 GB quota prevents uncontrolled growth of etcd data.
+
+5. **Disabled components** –
+
+   * `traefik` and `metrics-server` turned off to reduce overhead or allow external replacements.
+

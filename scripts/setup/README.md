@@ -45,7 +45,9 @@ Automates fixing permissions for kernel images on multiple worker nodes.
 - Creates a `postinst` hook script `zzz-chmod-vmlinuz` if it does not exist.
 - Sets `/boot/vmlinuz-*` files to `0644` after kernel installation.
 
-### 5. Reboot notify discord
+---
+
+### 5. Νotify discord in reboot
 
 **Filename:** `send-status.sh`
 **Description:**
