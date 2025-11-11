@@ -9,7 +9,7 @@
 
 ## 📋 Project Overview
 
-The Pi Project is an initiative by the Computing Systems Laboratory (CSLAB) that organizes student teams to build and maintain Raspberry Pi clusters. This MLOps team focuses on machine learning applications including distributed learning, IoT, and edge ML. Our flagship application is "Jen the Chatbot" - a quantized Llama model running inference the cluster. The inference app can be found here: (https://github.com/KostasTheodosiou/flask-LLM-app)!
+The Pi Project is an initiative by the Computing Systems Laboratory (CSLAB) that organizes student teams to build and maintain Raspberry Pi clusters. This MLOps team focuses on machine learning applications including distributed learning, IoT, and edge ML. Our flagship application is "Jen the Chatbot" - a quantized Llama model running inference the cluster. The inference app can be found here: (https://github.com/KostasTheodosiou/flask-LLM-app).
 
 ![Node Setup](Assets/ClusterPic.jpg)
 
@@ -26,6 +26,7 @@ The Pi Project is an initiative by the Computing Systems Laboratory (CSLAB) that
 - Worker nodes: 16 Pis (8 yellow, 8 green) booting over NFS
 
 ![Node Setup](Assets/Architecture1.png)
+
 
 
 
